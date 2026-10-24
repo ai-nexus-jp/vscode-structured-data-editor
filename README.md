@@ -1,6 +1,12 @@
 # Structured Data Editor for VS Code
 
+[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version/ai-nexus-jp.vscode-structured-data-editor.svg)](https://marketplace.visualstudio.com/items?itemName=ai-nexus-jp.vscode-structured-data-editor)
+[![CI](https://img.shields.io/github/actions/workflow/status/ai-nexus-jp/vscode-structured-data-editor/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/ai-nexus-jp/vscode-structured-data-editor/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+
 **Edit Markdown tables, CSV, TSV, and JSON visually as an intuitive spreadsheet — while keeping your files 100% plain, readable, and Git/AI-friendly.**
+
+Developed and maintained by **[AI Nexus](https://ai-nexus.jp)**.
 
 ---
 
@@ -51,8 +57,6 @@ Modern coding assistants and LLMs thrive on clean text files (Markdown tables, C
    - Click **Cancel** to discard all edits.
 5. To convert format, run:
    - **`Structured Data Editor: Export As...`**
-
----
 
 ---
 
