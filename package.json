@@ -1,0 +1,78 @@
+{
+  "name": "vscode-structured-data-editor",
+  "displayName": "Structured Data Editor",
+  "description": "Edit Markdown tables visually in VS Code and apply changes safely back to the source file.",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "Formatters"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "structuredDataEditor.editTableVisually",
+        "title": "Structured Data Editor: Edit Table Visually"
+      },
+      {
+        "command": "structuredDataEditor.exportAs",
+        "title": "Structured Data Editor: Export As..."
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "structuredDataEditor.editTableVisually",
+          "when": "editorLangId == markdown || resourceExtname == .csv || resourceExtname == .tsv || resourceExtname == .json"
+        },
+        {
+          "command": "structuredDataEditor.exportAs",
+          "when": "editorLangId == markdown || resourceExtname == .csv || resourceExtname == .tsv || resourceExtname == .json"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src test",
+    "test": "vitest run",
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "npm run typecheck && npm run build",
+    "vsix": "npm run typecheck && npm run build && vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/vscode": "1.90",
+    "@vscode/vsce": "^4.0.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.13.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^5.0.5"
+  },
+  "keywords": [
+    "markdown",
+    "csv",
+    "json",
+    "table",
+    "editor"
+  ],
+  "overrides": {
+    "@azure/msal-node": "^7.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ai-nexus-jp/vscode-structured-data-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ai-nexus-jp/vscode-structured-data-editor/issues"
+  },
+  "homepage": "https://github.com/ai-nexus-jp/vscode-structured-data-editor#readme",
+  "publisher": "ai-nexus-jp"
+}

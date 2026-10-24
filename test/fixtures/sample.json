@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "Alice", "active": true, "score": 9.5, "tags": ["a", "b"] },
+  { "id": 2, "name": "Bob", "active": false, "note": null, "zip": "01234" }
+]
