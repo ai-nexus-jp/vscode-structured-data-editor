@@ -1,7 +1,20 @@
 # Changelog
 
-## 0.1.0 (unreleased)
-- Markdown table visual editing (cells, rows, columns, alignment), Apply/Cancel, conflict detection.
-- CSV/TSV visual editing (whole-file grid, delimiter detection, ragged-row rejection, conflict detection).
-- JSON (array of objects) visual editing with type-preserving cell text and nested values as JSON text.
-- Export As... between Markdown, CSV and JSON with lossy-conversion warnings.
+## 0.1.4
+- **Enhanced Spreadsheet UX**:
+  - Independent column resizing (resizing one column no longer shrinks others).
+  - Row height toggle in toolbar (Compact, Comfortable, Expanded) for comfortable reading of multiline/AI-generated text.
+  - Seamless dark-themed cell and header styling with clear grid borders.
+  - Persistent bottom horizontal scrollbar that never gets pushed off-screen.
+- **Improved CSV Diagnostics**:
+  - Show exact source file line number on ragged/mismatched column errors.
+  - Add "Go to Line X" notification action to jump directly to the issue.
+- **Documentation**:
+  - General user-focused README with Troubleshooting & FAQ.
+  - Relocated developer instructions to CONTRIBUTING.md.
+  - Official extension icon.
+
+## 0.1.0
+- Visual table editing for Markdown, CSV/TSV, and JSON (array of objects).
+- Safe Apply/Cancel and source conflict detection.
+- Export As... between formats with lossy conversion warnings.

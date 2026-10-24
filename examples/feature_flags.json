@@ -1,0 +1,123 @@
+[
+  {
+    "id": 1,
+    "key": "visual_grid_editor",
+    "enabled": true,
+    "rollout_percentage": 100,
+    "min_plan": "free",
+    "requires_restart": false,
+    "description": "Interactive table grid editor for Markdown, CSV, and JSON",
+    "expiry_date": null
+  },
+  {
+    "id": 2,
+    "key": "cjk_width_alignment",
+    "enabled": true,
+    "rollout_percentage": 100,
+    "min_plan": "free",
+    "requires_restart": false,
+    "description": "East Asian Ambiguous / CJK wide character alignment",
+    "expiry_date": null
+  },
+  {
+    "id": 3,
+    "key": "smart_export_modal",
+    "enabled": true,
+    "rollout_percentage": 100,
+    "min_plan": "pro",
+    "requires_restart": false,
+    "description": "Convert tables between Markdown, CSV, and JSON with preview",
+    "expiry_date": null
+  },
+  {
+    "id": 4,
+    "key": "keyboard_tab_navigation",
+    "enabled": true,
+    "rollout_percentage": 80,
+    "min_plan": "free",
+    "requires_restart": false,
+    "description": "Tab and Shift+Tab key navigation across grid cells",
+    "expiry_date": "2026-12-31"
+  },
+  {
+    "id": 5,
+    "key": "undo_redo_history",
+    "enabled": false,
+    "rollout_percentage": 0,
+    "min_plan": "pro",
+    "requires_restart": true,
+    "description": "Undo and Redo stack for cell modifications",
+    "expiry_date": "2027-03-31"
+  },
+  {
+    "id": 6,
+    "key": "ragged_csv_validator",
+    "enabled": true,
+    "rollout_percentage": 100,
+    "min_plan": "free",
+    "requires_restart": false,
+    "description": "Validation and precise line jumper for inconsistent CSV rows",
+    "expiry_date": null
+  },
+  {
+    "id": 7,
+    "key": "multiline_cell_modal",
+    "enabled": false,
+    "rollout_percentage": 20,
+    "min_plan": "enterprise",
+    "requires_restart": false,
+    "description": "Expanded multiline text editor modal for complex cells",
+    "expiry_date": "2026-11-30"
+  },
+  {
+    "id": 8,
+    "key": "custom_delimiter_tsv",
+    "enabled": true,
+    "rollout_percentage": 100,
+    "min_plan": "free",
+    "requires_restart": false,
+    "description": "Auto-detection of tab, semicolon, and pipe delimiters",
+    "expiry_date": null
+  },
+  {
+    "id": 9,
+    "key": "enterprise_audit_log",
+    "enabled": false,
+    "rollout_percentage": 0,
+    "min_plan": "enterprise",
+    "requires_restart": true,
+    "description": "Detailed local audit logging for compliance requirements",
+    "expiry_date": "2027-06-30"
+  },
+  {
+    "id": 10,
+    "key": "context_menu_row_col",
+    "enabled": true,
+    "rollout_percentage": 50,
+    "min_plan": "pro",
+    "requires_restart": false,
+    "description": "Right click context menu to insert or delete rows and columns",
+    "expiry_date": "2026-12-15"
+  },
+  {
+    "id": 11,
+    "key": "strict_offline_sandbox",
+    "enabled": true,
+    "rollout_percentage": 100,
+    "min_plan": "free",
+    "requires_restart": false,
+    "description": "Enforce 100% offline CSP policy with zero telemetry",
+    "expiry_date": null
+  },
+  {
+    "id": 12,
+    "key": "ai_friendly_markdown_export",
+    "enabled": true,
+    "rollout_percentage": 100,
+    "min_plan": "free",
+    "requires_restart": false,
+    "description": "Generate clean, token-efficient Markdown tables for LLM prompts",
+    "expiry_date": null
+  }
+]
+

@@ -2,7 +2,7 @@
   "name": "vscode-structured-data-editor",
   "displayName": "Structured Data Editor",
   "description": "Edit Markdown tables visually in VS Code and apply changes safely back to the source file.",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "private": true,
   "license": "MIT",
   "engines": {
@@ -74,5 +74,6 @@
     "url": "https://github.com/ai-nexus-jp/vscode-structured-data-editor/issues"
   },
   "homepage": "https://github.com/ai-nexus-jp/vscode-structured-data-editor#readme",
-  "publisher": "ai-nexus-jp"
+  "publisher": "ai-nexus-jp",
+  "icon": "icon.png"
 }

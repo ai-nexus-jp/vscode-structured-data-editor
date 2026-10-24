@@ -37,7 +37,7 @@ describe("csv parser/serializer", () => {
   });
 
   it("rejects ragged rows instead of truncating", () => {
-    expect(() => parseCsv("a,b\n1\n", ",")).toThrow(/Record 2/);
+    expect(() => parseCsv("a,b\n1\n", ",")).toThrow(/Line 2 \(Record 2\)/);
     expect(() => parseCsv("a,b\n1,2,3\n", ",")).toThrow();
   });
 

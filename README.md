@@ -1,86 +1,90 @@
-# Structured Data Editor (VS Code extension)
+# Structured Data Editor for VS Code
 
-Edit Markdown tables visually in VS Code and apply the result back to the file, while keeping plain, Git/AI-friendly text.
+**Edit Markdown tables, CSV, TSV, and JSON visually as an intuitive spreadsheet — while keeping your files 100% plain, readable, and Git/AI-friendly.**
 
-> **Status: Phase 1 (Markdown tables) and Phase 2 (CSV/TSV) and Phase 3 (JSON array of objects) and Phase 4 (export) are implemented.**
+---
 
-## Setup & run
+## Why Structured Data Editor?
 
-```bash
-npm install
-npm run build
-```
+Modern coding assistants and LLMs thrive on clean text files (Markdown tables, CSV, JSON). But humans struggle to read and edit raw pipe tables or complex delimited lines manually.
 
-Open this folder in VS Code and press **F5** (launch config "Run Extension") to start the Extension Development Host.
+**Structured Data Editor** bridges this gap:
+- **Visual Grid Editing**: Click, type, add/remove rows and columns just like in Excel.
+- **Safe & Non-Destructive**: Edits only the targeted table or file. Detects external changes to prevent accidental overwrites.
+- **100% Offline & Private**: Zero network telemetry, zero external API calls. Your data never leaves your machine.
+- **Format Conversion**: Effortlessly export between Markdown, CSV, and JSON with informative warnings for lossy conversions.
 
-## Usage
+---
 
-1. Open a Markdown file and put the cursor inside a pipe table.
-2. Run **Structured Data Editor: Edit Table Visually** from the Command Palette.
-3. Edit cells, add/delete rows and columns, set column alignment.
-4. **Apply** replaces only that table's lines in the document (then save normally). **Cancel** changes nothing.
+## Features & Supported Formats
 
-If the table changed in the document after the editor was opened, Apply refuses to overwrite and asks you to reopen or cancel.
+### 1. Markdown Tables
+- **In-place visual editing**: Place your cursor anywhere inside a Markdown table and launch the editor.
+- **Precision replacement**: Only the lines of that specific table are updated upon **Apply**; headings, code fences, and paragraphs remain untouched.
+- **Full alignment support**: Supports left, center, right alignments and wide/CJK characters for clean formatting.
 
-## CSV / TSV
+### 2. CSV & TSV Files
+- **Full-file grid view**: Opens `.csv` and `.tsv` files as a clean grid with row/column management.
+- **Smart parsing**: Automatically detects delimiters (`,` `;` `\t` `|`) and handles quotes, multiline cells, and empty fields.
+- **Integrity protection**: Files with ragged/inconsistent columns are safely rejected with a clear message rather than silently truncated.
 
-Open a `.csv` / `.tsv` file and run the same command. The whole file is shown as a grid (first row = header).
+### 3. JSON (Array of Objects)
+- **Table view for JSON**: Visualizes top-level arrays of objects as columns and rows.
+- **Type-safe preservation**: Numbers, booleans, and `null` retain their native JSON types; strings that resemble numbers/booleans are quoted for clarity.
+- **Nested structures**: Nested arrays and objects are displayed and editable as compact JSON strings.
 
-- Delimiter is detected (`,` `;` `\t` `|`; `.tsv` = tab). Quotes, embedded delimiters, line breaks and empty cells are handled.
-- Line ending and trailing newline are preserved. Encoding/BOM are handled by VS Code's document layer and are left untouched.
-- Files with ragged rows (differing field counts) or malformed quoting are **rejected with a message**, never truncated.
-- On save, fields are re-quoted only where needed, so unnecessary original quotes may be dropped.
+### 4. Smart Export ("Export As...")
+- Convert tables effortlessly between **Markdown**, **CSV**, and **JSON**.
+- Features an interactive modal preview detailing the source range, column order, and **explicit warnings if types or alignments will be simplified**.
+- Never overwrites the source file.
 
-## JSON (array of objects)
+---
 
-Open a `.json` file whose top level is an array of objects and run the same command.
+## How to Use
 
-- Columns = union of keys (first-seen order); a missing key is an **empty cell** and stays absent on save.
-- Types are preserved by how the cell text is written: `1`, `true`, `null` are number/boolean/null; a string that looks like one of those (e.g. `"01234"`, `"true"`, empty string) is shown **quoted**; other text is a plain string. Type text yourself the same way to change a type.
-- Nested objects/arrays are shown as compact JSON and are editable as JSON text; invalid JSON is rejected on Apply (nothing is written).
-- Rejected up front: non-array top level, non-object items, empty arrays, invalid JSON. Duplicate/empty column names are rejected on Apply.
-- Indent (spaces/tab), line endings and trailing newline are preserved. Key order inside each object follows the column order; duplicate keys in the source and number formatting (e.g. `1.0` -> `1`, huge integers) are normalized by JSON parsing.
+1. Open a Markdown, CSV, TSV, or JSON file in VS Code.
+2. In Markdown, place your cursor inside a table.
+3. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and run:
+   - **`Structured Data Editor: Edit Table Visually`**
+4. Edit cells inline, add or remove rows and columns:
+   - Click **Apply** to write changes back to your file.
+   - Click **Cancel** to discard all edits.
+5. To convert format, run:
+   - **`Structured Data Editor: Export As...`**
 
-## Export As…
+---
 
-Run **Structured Data Editor: Export As...** in a Markdown (cursor in a table), CSV/TSV or JSON file. Pick a target format, review the confirmation dialog (source range, column order, row count and **warnings about lost information**), then choose the destination. Export never modifies the source file and refuses to overwrite it.
+---
 
-- Markdown/CSV -> JSON: cell text becomes typed values (numbers, `true/false/null`); other text stays a string; empty cells become `""`. Needs unique, non-empty headers.
-- JSON -> Markdown/CSV: types, missing keys and nested values are flattened to text (warned).
-- Markdown -> CSV/JSON: column alignment is dropped (warned). CSV/JSON -> Markdown: line breaks in cells become `<br>` (warned). CSV export always uses `,` and LF.
+## Troubleshooting & FAQ
 
-## Development
+### Q: Why do I see "Record X has Y fields but the header has Z"?
+**A:** This error occurs when a CSV row has an unexpected number of columns (e.g., more or fewer commas than the header row).
 
-| Command | Purpose |
-| --- | --- |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm test` | Vitest unit tests |
-| `npm run build` | Bundle extension + webview into `dist/` |
+**Most common causes:**
+1. **Unquoted commas inside text**: Numbers like `1,500` or sentences like `Hello, world` must be enclosed in double quotes (`"1,500"`, `"Hello, world"`). Otherwise, the comma is treated as a column separator.
+2. **Missing closing quotes**: An unmatched quote character on a previous line can cause lines to merge.
 
-## Architecture
+**Quick fix:**
+- Click the **"Go to Line X"** button directly on the error notification to jump right to the problem line.
+- Wrap the field containing commas with double quotes (`"`), or fix missing columns, and run the command again.
 
-- `src/formats/markdown/` – parser/serializer (format adapter, no VS Code dependency)
-- `src/core/` – shared `TableData` model, webview message protocol + validation
-- `src/commands/session.ts` – apply/cancel/conflict logic behind a `SessionHost` interface (testable without VS Code)
-- `src/extension.ts` – VS Code glue (command, webview panel with CSP, document edit)
-- `src/webview/main.ts` – plain TypeScript grid UI (no framework needed for Phase 1)
+> **Why we don't fix it automatically:** Silently guessing how to split or merge unquoted columns could corrupt or erase your valuable data. Structured Data Editor prioritizes **data integrity** and alerts you safely.
 
-CSV/JSON adapters can later be added under `src/formats/` using the same `TableData` model.
+## Privacy & Security
 
-## Known limitations
+- **Local Execution**: All parsing, rendering, and serialization run locally inside your VS Code instance.
+- **No Data Telemetry**: We do not collect, transmit, or analyze any user content or metrics.
+- **Strict Content Security**: The editor webview is sandboxed with strict Content Security Policies (CSP).
 
-- Tables with rows whose cell count differs from the header, or header/delimiter mismatch, are rejected with a message (never silently truncated).
-- Tables inside blockquotes or indented 4+ spaces are not detected.
-- Output is normalized: outer pipes, padded columns. Newlines in cells become `<br>`. Cell whitespace is trimmed.
-- Inline pipes must be escaped as `\|` (GFM rule); they are preserved/escaped on save.
-- CSV: single-sheet grid only; no type inference (all cells are text).
-- No copy/paste, keyboard shortcuts or undo/redo in the grid yet.
-- The VS Code integration (extension host + webview) has not been covered by automated integration tests.
+---
+
+## Contributing & Development
+
+For local setup, building from source, testing, and contribution guidelines, please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
 ## About AI Nexus
 
 Developed and maintained by **[AI Nexus](https://ai-nexus.jp)** — Empowering business transformation and developer productivity through AI and modern tooling.
-

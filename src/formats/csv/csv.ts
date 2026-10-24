@@ -50,8 +50,11 @@ export function parseCsv(text: string, delimiter: string): ParsedCsv {
   let i = 0;
   let line = 1;
   let atRecordStart = true;
+  const recordLines: number[] = [];
+  let currentRecordStartLine = 1;
 
   const endRecord = () => {
+    recordLines.push(currentRecordStartLine);
     record.push(field);
     records.push(record);
     record = [];
@@ -82,10 +85,10 @@ export function parseCsv(text: string, delimiter: string): ParsedCsv {
         field += c;
         i++;
       }
-      if (!closed) throw new UnsupportedTableError("Unterminated quoted field.");
+      if (!closed) throw new UnsupportedTableError("Unterminated quoted field.", { line: currentRecordStartLine });
       const next = text[i];
       if (next !== undefined && next !== delimiter && next !== "\n" && next !== "\r") {
-        throw new UnsupportedTableError(`Unexpected character after closing quote on line ${line}.`);
+        throw new UnsupportedTableError(`Unexpected character after closing quote on line ${line}.`, { line });
       }
       continue;
     }
@@ -98,6 +101,7 @@ export function parseCsv(text: string, delimiter: string): ParsedCsv {
       endRecord();
       i += ch === "\r" && text[i + 1] === "\n" ? 2 : 1;
       line++;
+      currentRecordStartLine = line;
     } else {
       field += ch;
       atRecordStart = false;
@@ -111,8 +115,10 @@ export function parseCsv(text: string, delimiter: string): ParsedCsv {
   const cols = headers.length;
   records.forEach((r, n) => {
     if (r.length !== cols) {
+      const recordLine = recordLines[n] ?? (n + 1);
       throw new UnsupportedTableError(
-        `Record ${n + 1} has ${r.length} fields but the header has ${cols}. Fix the column counts first.`,
+        `Line ${recordLine} (Record ${n + 1}) has ${r.length} fields but the header has ${cols}. Fix the column counts first.`,
+        { line: recordLine }
       );
     }
   });
