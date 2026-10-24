@@ -30,7 +30,7 @@ export interface EditTarget {
   serialize(data: TableData): string;
 }
 
-export type StartResult = { ok: true; target: EditTarget } | { ok: false; message: string };
+export type StartResult = { ok: true; target: EditTarget } | { ok: false; message: string; line?: number };
 export type ConflictCheck = { ok: true } | { ok: false; message: string };
 
 const CONFLICT_MESSAGE =
@@ -81,7 +81,7 @@ export function locateCsv(text: string, fileName: string): StartResult {
     };
   } catch (e) {
     if (e instanceof UnsupportedTableError) {
-      return { ok: false, message: `This file cannot be edited visually: ${e.message}` };
+      return { ok: false, message: `This file cannot be edited visually: ${e.message}`, line: e.line };
     }
     throw e;
   }
@@ -109,7 +109,7 @@ export function locateJson(text: string): StartResult {
     };
   } catch (e) {
     if (e instanceof UnsupportedTableError) {
-      return { ok: false, message: `This file cannot be edited visually: ${e.message}` };
+      return { ok: false, message: `This file cannot be edited visually: ${e.message}`, line: e.line };
     }
     throw e;
   }
