@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" fill="url(#bg)" />
+
+  <!-- Title -->
+  <text x="600" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="bold" fill="#f8fafc" text-anchor="middle">
+    AI時代の表データ管理：従来の課題 vs Structured Data Editor
+  </text>
+  <text x="600" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#94a3b8" text-anchor="middle">
+    プレーンテキストのGit親和性と、Excelライクな直感編集を両立するアーキテクチャ
+  </text>
+
+  <!-- BEFORE CONTAINER -->
+  <g transform="translate(60, 120)">
+    <rect width="1080" height="230" rx="16" fill="#1e293b" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,6" filter="url(#shadow)" />
+    <rect x="24" y="-14" width="220" height="28" rx="6" fill="#ef4444" />
+    <text x="134" y="5" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      従来の課題 (Before)
+    </text>
+
+    <!-- Step 1 -->
+    <rect x="40" y="45" width="220" height="150" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+    <text x="150" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9" text-anchor="middle">① AI Ready なデータ</text>
+    <text x="150" y="105" font-family="system-ui, sans-serif" font-size="13" fill="#cbd5e1" text-anchor="middle">Markdown / CSV / JSON</text>
+    <text x="150" y="130" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">• Gitで管理しやすい</text>
+    <text x="150" y="150" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">• LLMプロンプト・評価用</text>
+    <text x="150" y="170" font-family="system-ui, sans-serif" font-size="12" fill="#f87171" text-anchor="middle">⚠ エディタ上では極めて見づらい</text>
+
+    <!-- Arrow 1 -->
+    <path d="M 275 120 L 315 120" stroke="#f87171" stroke-width="3" stroke-linecap="round" />
+    <polygon points="325,120 315,114 315,126" fill="#f87171" />
+
+    <!-- Step 2 -->
+    <rect x="340" y="45" width="220" height="150" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+    <text x="450" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#f1f5f9" text-anchor="middle">② 表計算ソフトへ移動</text>
+    <text x="450" y="105" font-family="system-ui, sans-serif" font-size="13" fill="#cbd5e1" text-anchor="middle">Excel / スプレッドシート</text>
+    <text x="450" y="130" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">• 編集は視覚的で楽</text>
+    <text x="450" y="150" font-family="system-ui, sans-serif" font-size="12" fill="#f87171" text-anchor="middle">⚠ コピペで行き来が大変</text>
+    <text x="450" y="170" font-family="system-ui, sans-serif" font-size="12" fill="#f87171" text-anchor="middle">⚠ ファイル同期が崩れる</text>
+
+    <!-- Arrow 2 -->
+    <path d="M 575 120 L 615 120" stroke="#f87171" stroke-width="3" stroke-linecap="round" />
+    <polygon points="625,120 615,114 615,126" fill="#f87171" />
+
+    <!-- Step 3 -->
+    <rect x="640" y="45" width="390" height="150" rx="12" fill="#450a0a" stroke="#ef4444" stroke-width="1.5" />
+    <text x="835" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#fca5a5" text-anchor="middle">③ Excel保存・変換によるデータ大惨事</text>
+    <text x="835" y="105" font-family="system-ui, sans-serif" font-size="13" fill="#fecaca" text-anchor="middle">❌ ゼロ落ち（"01234" → 1234）でコード消失</text>
+    <text x="835" y="128" font-family="system-ui, sans-serif" font-size="13" fill="#fecaca" text-anchor="middle">❌ 日付形式の勝手な書式変換</text>
+    <text x="835" y="151" font-family="system-ui, sans-serif" font-size="13" fill="#fecaca" text-anchor="middle">❌ 改行・カンマ解釈ズレによるAI評価データの破損</text>
+    <text x="835" y="174" font-family="system-ui, sans-serif" font-size="13" fill="#fecaca" text-anchor="middle">❌ Gitでの差分比較がバイナリで不可能になる</text>
+  </g>
+
+  <!-- AFTER CONTAINER -->
+  <g transform="translate(60, 390)">
+    <rect width="1080" height="240" rx="16" fill="#1e293b" stroke="#10b981" stroke-width="2" filter="url(#shadow)" />
+    <rect x="24" y="-14" width="310" height="28" rx="6" fill="#10b981" />
+    <text x="179" y="5" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      Structured Data Editor の解決策 (After)
+    </text>
+
+    <!-- Node 1: Plain text file -->
+    <rect x="40" y="45" width="260" height="165" rx="12" fill="#0f172a" stroke="#059669" stroke-width="1.5" />
+    <text x="170" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#34d399" text-anchor="middle">📂 常にプレーンテキスト</text>
+    <text x="170" y="105" font-family="system-ui, sans-serif" font-size="13" fill="#e2e8f0" text-anchor="middle">Markdown / CSV / JSON</text>
+    <text x="170" y="132" font-family="system-ui, sans-serif" font-size="12" fill="#a7f3d0" text-anchor="middle">✔ Gitの行単位差分管理が完璧</text>
+    <text x="170" y="155" font-family="system-ui, sans-serif" font-size="12" fill="#a7f3d0" text-anchor="middle">✔ LLMが直接読み書き可能</text>
+    <text x="170" y="178" font-family="system-ui, sans-serif" font-size="12" fill="#a7f3d0" text-anchor="middle">✔ 外部アプリ起動不要・エディタ完結</text>
+
+    <!-- Bidirectional Arrow -->
+    <path d="M 315 115 L 375 115" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" />
+    <polygon points="385,115 375,109 375,121" fill="#38bdf8" />
+    <path d="M 385 140 L 325 140" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" />
+    <polygon points="315,140 325,134 325,146" fill="#38bdf8" />
+    <text x="350" y="98" font-family="system-ui, sans-serif" font-size="11" fill="#38bdf8" text-anchor="middle">相互即時反映</text>
+
+    <!-- Node 2: Visual Grid Editor -->
+    <rect x="400" y="45" width="340" height="165" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+    <text x="570" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#38bdf8" text-anchor="middle">📊 VS Code Webview グリッド編集</text>
+    <text x="570" y="105" font-family="system-ui, sans-serif" font-size="13" fill="#e2e8f0" text-anchor="middle">Excelライクな直感スプレッドシート</text>
+    <text x="570" y="132" font-family="system-ui, sans-serif" font-size="12" fill="#bae6fd" text-anchor="middle">✔ Markdown表もカーソル位置から瞬時に表化</text>
+    <text x="570" y="155" font-family="system-ui, sans-serif" font-size="12" fill="#bae6fd" text-anchor="middle">✔ グリッドで編集 → 元ファイルへ正確に自動同期</text>
+    <text x="570" y="178" font-family="system-ui, sans-serif" font-size="12" fill="#bae6fd" text-anchor="middle">✔ ゼロ落ちなし・文字コード破壊なし（安全保証）</text>
+
+    <!-- Export Arrow -->
+    <path d="M 755 125 L 805 125" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" />
+    <polygon points="815,125 805,119 805,131" fill="#38bdf8" />
+    <text x="785" y="112" font-family="system-ui, sans-serif" font-size="11" fill="#38bdf8" text-anchor="middle">Export</text>
+
+    <!-- Node 3: Smart Export -->
+    <rect x="830" y="45" width="210" height="165" rx="12" fill="#0f172a" stroke="#059669" stroke-width="1.5" />
+    <text x="935" y="75" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#34d399" text-anchor="middle">🔄 スマート相互変換</text>
+    <text x="935" y="105" font-family="system-ui, sans-serif" font-size="13" fill="#e2e8f0" text-anchor="middle">自由なフォーマット出力</text>
+    <text x="935" y="132" font-family="system-ui, sans-serif" font-size="12" fill="#a7f3d0" text-anchor="middle">Markdown ⇄ CSV</text>
+    <text x="935" y="155" font-family="system-ui, sans-serif" font-size="12" fill="#a7f3d0" text-anchor="middle">CSV ⇄ JSON</text>
+    <text x="935" y="178" font-family="system-ui, sans-serif" font-size="12" fill="#a7f3d0" text-anchor="middle">Markdown ⇄ JSON</text>
+  </g>
+</svg>
