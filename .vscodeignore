@@ -2,7 +2,10 @@
 !dist/**
 !package.json
 !README.md
+!README.ja.md
 !LICENSE
 !CHANGELOG.md
 !dist/*.map
 !icon.png
+!images/**
+
