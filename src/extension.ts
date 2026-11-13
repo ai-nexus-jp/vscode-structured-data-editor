@@ -203,7 +203,9 @@ function renderHtml(webview: vscode.Webview, extensionUri: vscode.Uri): string {
     font: inherit;
   }
   button.primary { background: var(--vscode-button-background); color: var(--vscode-button-foreground); }
-  button:disabled { opacity: .5; cursor: default; }
+  button.danger { background: var(--vscode-inputValidation-errorBackground, #5a1d1d); color: var(--vscode-errorForeground, #f48771); border-color: var(--vscode-inputValidation-errorBorder, #be1100); }
+  button:disabled { opacity: .45; cursor: default; }
+  .toolbar-sep { width: 1px; height: 18px; background: var(--vscode-panel-border); margin: 0 2px; }
 
   .status { font-size: .9em; opacity: .85; margin-left: 4px; }
   .status.dirty { color: var(--vscode-editorWarning-foreground); opacity: 1; font-weight: bold; }
@@ -265,9 +267,9 @@ function renderHtml(webview: vscode.Webview, extensionUri: vscode.Uri): string {
   }
 
   th.corner, td.row-num {
-    width: 44px;
-    min-width: 44px;
-    max-width: 44px;
+    width: 82px;
+    min-width: 82px;
+    max-width: 82px;
     position: sticky;
     left: 0;
     z-index: 11;
@@ -277,6 +279,14 @@ function renderHtml(webview: vscode.Webview, extensionUri: vscode.Uri): string {
   thead th.corner {
     z-index: 12;
     background: var(--vscode-editor-inactiveSelectionBackground);
+  }
+  .corner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px;
+    font-size: 0.85em;
   }
 
   th.col-header {
@@ -326,11 +336,23 @@ function renderHtml(webview: vscode.Webview, extensionUri: vscode.Uri): string {
     opacity: 0.8;
   }
 
-  .colctl, .rowctl { display: flex; gap: 4px; align-items: center; }
-  .rowctl { justify-content: center; height: 100%; padding: 4px 0; }
-  .row-label { font-size: 0.75em; opacity: 0.5; margin-right: 2px; }
-  .btn-del { opacity: 0.5; padding: 2px 4px; font-size: 0.8em; line-height: 1; border: none; background: transparent; cursor: pointer; }
-  .btn-del:hover { opacity: 1; color: var(--vscode-errorForeground); }
+  .colctl { display: flex; gap: 3px; align-items: center; flex-wrap: wrap; padding: 2px 4px 4px; }
+  .colctl select { padding: 1px 4px; font-size: 0.8em; }
+  .rowctl { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; height: 100%; padding: 4px 2px; }
+  .rowctl-top { display: flex; align-items: center; gap: 4px; }
+  .rowctl-actions { display: flex; align-items: center; gap: 1px; }
+  .row-label { font-size: 0.78em; opacity: 0.7; }
+  .sel-cb { margin: 0; cursor: pointer; accent-color: var(--vscode-focusBorder); }
+  .btn-ctl, .btn-del { opacity: 0.65; padding: 1px 4px; font-size: 0.78em; line-height: 1.2; border: none; background: transparent; cursor: pointer; border-radius: 2px; }
+  .btn-ctl:hover:not(:disabled) { opacity: 1; background: var(--vscode-toolbar-hoverBackground, rgba(255, 255, 255, 0.1)); }
+  .sort-btn.active { opacity: 1; color: var(--vscode-textLink-foreground, #3794ff); font-weight: bold; }
+  .btn-del:hover:not(:disabled) { opacity: 1; color: var(--vscode-errorForeground); }
+  tr.row-selected td, th.col-selected, td.col-selected {
+    box-shadow: inset 0 0 0 9999px var(--vscode-list-inactiveSelectionBackground, rgba(55, 148, 255, 0.14));
+  }
+  tr.row-selected td.col-selected {
+    box-shadow: inset 0 0 0 9999px var(--vscode-list-activeSelectionBackground, rgba(55, 148, 255, 0.24));
+  }
 
   .cell-container { width: 100%; height: 100%; box-sizing: border-box; display: flex; }
   textarea.cell {
