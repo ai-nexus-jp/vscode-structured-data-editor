@@ -95,8 +95,10 @@ Need to convert a Markdown table into a CSV file, or turn a CSV dataset into JSO
    Structured Data Editor: Edit Table Visually
    ```
 4. **Edit comfortably** in the visual grid:
-   - Double-click or select any cell to edit its value.
-   - Use the toolbar or context buttons to insert or delete rows and columns.
+   - Click or double-click any cell to edit its value.
+   - **Keyboard navigation**: Move across cells with `Tab` / `Shift+Tab`, `Enter` (use `Shift+Enter` for a newline inside a cell), or arrow keys (`Ctrl`/`Alt` + arrows, or at cell text boundaries).
+   - **Undo / Redo**: Press `Ctrl+Z` / `Ctrl+Y` (`Cmd+Z` / `Cmd+Shift+Z` on macOS) or use the toolbar buttons.
+   - **Sort, reorder & bulk delete**: Sort ascending/descending (`↕`) from column headers, move rows (`↑`/`↓`) or columns (`◀`/`▶`), and multi-select with checkboxes (`Shift+Click` for ranges) to delete multiple rows or columns at once.
    - Click **Apply** to write changes back to your source file.
    - Click **Cancel** to discard edits safely.
 5. To convert format, run:
