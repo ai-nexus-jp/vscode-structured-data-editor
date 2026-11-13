@@ -2,7 +2,7 @@
   "name": "vscode-structured-data-editor",
   "displayName": "Structured Data Editor",
   "description": "Edit Markdown tables visually in VS Code and apply changes safely back to the source file.",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "private": true,
   "license": "MIT",
   "engines": {
